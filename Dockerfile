@@ -35,6 +35,7 @@ FROM phusion/baseimage:0.11
 LABEL maintainer "support@polkasource.com"
 LABEL description="Small image with the Substrate binary."
 ARG PROFILE=release
+ARG REPOSITORY=paritytech-substrate
 COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/substrate /usr/local/bin
 
 # REMOVE & CLEANUP
