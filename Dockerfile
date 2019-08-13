@@ -4,7 +4,7 @@ LABEL maintainer "support@polkasource.com"
 LABEL description="Large image for building the Substrate binary."
 
 ARG PROFILE=release
-ARG REPOSITORY=paritytech-substrate
+ARG REPOSITORY=cennznet-cennznet
 WORKDIR /rustbuilder
 COPY . /rustbuilder
 
@@ -15,6 +15,7 @@ RUN apt-get update && \
 	
 # CHECKOUT GIT SUBMODULES
 RUN git submodule update --init --recursive
+RUN cd /rustbuilder/$REPOSITORY && git clone https://github.com/Joystream/substrate-runtime-joystream.git
 	
 # UPDATE RUST DEPENDENCIES
 ENV RUSTUP_HOME "/rustbuilder/.rustup"
@@ -26,7 +27,7 @@ RUN RUSTUP_TOOLCHAIN=stable cargo install --git https://github.com/alexcrichton/
 
 # BUILD RUNTIME AND BINARY
 RUN rustup target add wasm32-unknown-unknown --toolchain nightly
-#RUN cd /rustbuilder/$REPOSITORY/scripts && ./build.sh
+RUN cd /rustbuilder/$REPOSITORY && ./scripts/build.sh
 RUN cd /rustbuilder/$REPOSITORY && RUSTUP_TOOLCHAIN=stable cargo build --$PROFILE
 # ===== END FIRST STAGE ======
 
@@ -35,23 +36,24 @@ FROM phusion/baseimage:0.11
 LABEL maintainer "support@polkasource.com"
 LABEL description="Small image with the Substrate binary."
 ARG PROFILE=release
-ARG REPOSITORY=paritytech-substrate
-COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/substrate /usr/local/bin
+ARG REPOSITORY=cennznet-cennznet
+COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/cennznet /usr/local/bin
+COPY --from=builder /rustbuilder/$REPOSITORY/genesis/. /usr/local/bin/genesis/.
 
 # REMOVE & CLEANUP
 RUN mv /usr/share/ca* /tmp && \
 	rm -rf /usr/share/*  && \
 	mv /tmp/ca-certificates /usr/share/ && \
 	rm -rf /usr/lib/python* && \
-	mkdir -p /root/.local/share/substrate && \
-	ln -s /root/.local/share/substrate /data
+	mkdir -p /root/.local/share/cennznet && \
+	ln -s /root/.local/share/cennznet /data
 RUN	rm -rf /usr/bin /usr/sbin
 
 # FINAL PREPARATIONS
 EXPOSE 30333 9933 9944
 VOLUME ["/data"]
-#CMD ["/usr/local/bin/substrate"]
+#CMD ["/usr/local/bin/cennznet"]
 WORKDIR /usr/local/bin
-ENTRYPOINT ["substrate"]
-CMD ["--chain=flaming-fir"]
+ENTRYPOINT ["cennznet"]
+#CMD [""]
 # ===== END SECOND STAGE ======
