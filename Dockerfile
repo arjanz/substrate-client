@@ -4,7 +4,7 @@ LABEL maintainer "support@polkasource.com"
 LABEL description="Large image for building the Substrate binary."
 
 ARG PROFILE=release
-ARG REPOSITORY=paritytech-substrate
+ARG REPOSITORY=kiltprotocol-mashnet-node
 WORKDIR /rustbuilder
 COPY . /rustbuilder
 
@@ -35,7 +35,7 @@ FROM phusion/baseimage:0.11
 LABEL maintainer "support@polkasource.com"
 LABEL description="Small image with the Substrate binary."
 ARG PROFILE=release
-ARG REPOSITORY=paritytech-substrate
+ARG REPOSITORY=kiltprotocol-mashnet-node
 COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/substrate /usr/local/bin
 
 # REMOVE & CLEANUP
@@ -53,5 +53,5 @@ VOLUME ["/data"]
 #CMD ["/usr/local/bin/substrate"]
 WORKDIR /usr/local/bin
 ENTRYPOINT ["substrate"]
-CMD ["--chain=flaming-fir"]
+CMD []
 # ===== END SECOND STAGE ======
