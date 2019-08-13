@@ -1,3 +1,3 @@
-[submodule "paritytech-substrate"]
-	path = paritytech-substrate
-	url = https://github.com/paritytech/substrate.git
+[submodule "paritytech-polkadot"]
+	path = paritytech-polkadot
+	url = https://github.com/paritytech/polkadot.git
