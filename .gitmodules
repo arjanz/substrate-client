@@ -1,3 +1,3 @@
-[submodule "paritytech-substrate"]
-	path = paritytech-substrate
-	url = https://github.com/paritytech/substrate.git
+[submodule "airalab-substrate-node-robonomics"]
+	path = airalab-substrate-node-robonomics
+	url = https://github.com/airalab/substrate-node-robonomics.git
