@@ -1,15 +1,15 @@
-# Polkasource Substrate
-Polkasource Dockerfile for Substrate Network
+# Polkasource Substrate-Client
+Polkasource Dockerfile for Substrate Clients
 
-## Building blockchain client
-Clone blockchain client repository
+## Building a Substrate Client
+Clone substrate-client repository
 ```bash
-git clone https://github.com/polkasource/substrate.git
+git clone https://github.com/polkasource/substrate-client.git
 ```
 
 Change directory
 ```bash
-cd substrate
+cd substrate-client
 ```
 
 Check available releases
@@ -22,7 +22,7 @@ Checkout a particular release (network-v#.#.#)
 git checkout network-v#.#.#
 ```
 
-Build blockchain client (network-v#.#.#)
+Build the Substrate-Client (network-v#.#.#)
 ```bash
-docker build -t 'polkasource/substrate:network-v#.#.#' .
+docker build -t 'polkasource/substrate-client:network-v#.#.#' .
 ```
