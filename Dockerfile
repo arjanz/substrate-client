@@ -21,11 +21,13 @@ ENV RUSTUP_HOME "/rustbuilder/.rustup"
 ENV CARGO_HOME "/rustbuilder/.cargo"
 RUN curl -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH "$PATH:/rustbuilder/.cargo/bin"
-RUN rustup update nightly
+#RUN rustup update nightly
+#RUN rustup override set nightly-2019-07-09
 RUN RUSTUP_TOOLCHAIN=stable cargo install --git https://github.com/alexcrichton/wasm-gc
 
 # BUILD RUNTIME AND BINARY
 RUN rustup target add wasm32-unknown-unknown --toolchain nightly
+#RUN rustup target add wasm32-unknown-unknown --toolchain nightly-2019-07-09
 #RUN cd /rustbuilder/$REPOSITORY/scripts && ./build.sh
 RUN cd /rustbuilder/$REPOSITORY && RUSTUP_TOOLCHAIN=stable cargo build --$PROFILE
 # ===== END FIRST STAGE ======
