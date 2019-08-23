@@ -21,7 +21,7 @@ ENV RUSTUP_HOME "/rustbuilder/.rustup"
 ENV CARGO_HOME "/rustbuilder/.cargo"
 RUN curl -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH "$PATH:/rustbuilder/.cargo/bin"
-#RUN rustup update nightly
+RUN rustup update nightly
 #RUN rustup override set nightly-2019-07-09
 RUN RUSTUP_TOOLCHAIN=stable cargo install --git https://github.com/alexcrichton/wasm-gc
 
