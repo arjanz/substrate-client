@@ -38,6 +38,7 @@ ARG PROFILE=release
 ARG REPOSITORY=hicommonwealth-edgeware-node
 COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/edgeware /usr/local/bin
 COPY --from=builder /rustbuilder/$REPOSITORY/testnets/. /usr/local/bin/testnets/.
+COPY --from=builder /rustbuilder/$REPOSITORY/mainnet/. /usr/local/bin/mainnet/.
 
 # REMOVE & CLEANUP
 RUN mv /usr/share/ca* /tmp && \
