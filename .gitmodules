@@ -1,6 +1,6 @@
 [submodule "paritytech-substrate"]
 	path = paritytech-substrate
 	url = https://github.com/paritytech/substrate.git
-[submodule "hicommonwealth-edgeware-node"]
-	path = hicommonwealth-edgeware-node
-	url = https://github.com/hicommonwealth/edgeware-node/
+[submodule "heystraightedge_straightedge-node"]
+	path = heystraightedge_straightedge-node
+	url = https://github.com/heystraightedge/straightedge-node
