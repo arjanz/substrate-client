@@ -36,7 +36,7 @@ LABEL maintainer "support@polkasource.com"
 LABEL description="Small image with the Substrate binary."
 ARG PROFILE=release
 ARG REPOSITORY=heystraightedge_straightedge-node
-COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/straightedge  /usr/local/bin
+COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/straightedge /usr/local/bin
 COPY --from=builder /rustbuilder/$REPOSITORY/mainnet/. /usr/local/bin/mainnet/.
 
 # REMOVE & CLEANUP
@@ -44,15 +44,15 @@ RUN mv /usr/share/ca* /tmp && \
 	rm -rf /usr/share/*  && \
 	mv /tmp/ca-certificates /usr/share/ && \
 	rm -rf /usr/lib/python* && \
-	mkdir -p /root/.local/share/straightedge  && \
+	mkdir -p /root/.local/share/straightedge && \
 	ln -s /root/.local/share/straightedge /data
 RUN	rm -rf /usr/bin /usr/sbin
 
 # FINAL PREPARATIONS
 EXPOSE 30333 9933 9944
 VOLUME ["/data"]
-#CMD ["/usr/local/bin/straightedge "]
+#CMD ["/usr/local/bin/straightedge"]
 WORKDIR /usr/local/bin
-ENTRYPOINT ["straightedge "]
-CMD ["--chain=straightedge "]
+ENTRYPOINT ["straightedge"]
+CMD ["--chain=straightedge"]
 ## ===== END SECOND STAGE ======
