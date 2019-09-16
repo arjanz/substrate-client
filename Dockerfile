@@ -26,7 +26,7 @@ RUN RUSTUP_TOOLCHAIN=stable cargo install --git https://github.com/alexcrichton/
 
 # BUILD RUNTIME AND BINARY
 RUN rustup target add wasm32-unknown-unknown --toolchain nightly
-RUN cd /rustbuilder/$REPOSITORY/runtime/wasm && ./build.sh
+#RUN cd /rustbuilder/$REPOSITORY/runtime/wasm && ./build.sh
 RUN cd /rustbuilder/$REPOSITORY && RUSTUP_TOOLCHAIN=stable cargo build --$PROFILE
 # ===== END FIRST STAGE ======
 
@@ -36,7 +36,7 @@ LABEL maintainer "support@polkasource.com"
 LABEL description="Small image with the Substrate binary."
 ARG PROFILE=release
 ARG REPOSITORY=airalab-substrate-node-robonomics
-COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/substrate /usr/local/bin
+COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/robonomics /usr/local/bin
 
 # REMOVE & CLEANUP
 RUN mv /usr/share/ca* /tmp && \
