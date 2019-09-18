@@ -4,7 +4,7 @@ LABEL maintainer "support@polkasource.com"
 LABEL description="Large image for building the Substrate binary."
 
 ARG PROFILE=release
-ARG REPOSITORY=paritytech-substrate
+ARG REPOSITORY=laddernetwork_ladder
 WORKDIR /rustbuilder
 COPY . /rustbuilder
 
@@ -26,7 +26,7 @@ RUN RUSTUP_TOOLCHAIN=stable cargo install --git https://github.com/alexcrichton/
 
 # BUILD RUNTIME AND BINARY
 RUN rustup target add wasm32-unknown-unknown --toolchain nightly
-#RUN cd /rustbuilder/$REPOSITORY/scripts && ./build.sh
+RUN cd /rustbuilder/$REPOSITORY/runtime/wasm && ./build.sh
 RUN cd /rustbuilder/$REPOSITORY && RUSTUP_TOOLCHAIN=stable cargo build --$PROFILE
 # ===== END FIRST STAGE ======
 
@@ -35,23 +35,23 @@ FROM phusion/baseimage:0.11
 LABEL maintainer "support@polkasource.com"
 LABEL description="Small image with the Substrate binary."
 ARG PROFILE=release
-ARG REPOSITORY=paritytech-substrate
-COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/substrate /usr/local/bin
+ARG REPOSITORY=laddernetwork_ladder
+COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/ladder /usr/local/bin
 
 # REMOVE & CLEANUP
 RUN mv /usr/share/ca* /tmp && \
 	rm -rf /usr/share/*  && \
 	mv /tmp/ca-certificates /usr/share/ && \
 	rm -rf /usr/lib/python* && \
-	mkdir -p /root/.local/share/substrate && \
-	ln -s /root/.local/share/substrate /data
+	mkdir -p /root/.local/share/ladder && \
+	ln -s /root/.local/share/ladder /data
 RUN	rm -rf /usr/bin /usr/sbin
 
 # FINAL PREPARATIONS
 EXPOSE 30333 9933 9944
 VOLUME ["/data"]
-#CMD ["/usr/local/bin/substrate"]
+#CMD ["/usr/local/bin/ladder"]
 WORKDIR /usr/local/bin
-ENTRYPOINT ["substrate"]
-CMD ["--chain=flaming-fir"]
+ENTRYPOINT ["ladder"]
+CMD [""]
 # ===== END SECOND STAGE ======

@@ -1,3 +1,3 @@
-[submodule "paritytech-substrate"]
-	path = paritytech-substrate
-	url = https://github.com/paritytech/substrate.git
+[submodule "laddernetwork_ladder"]
+	path = laddernetwork_ladder
+	url = https://github.com/laddernetwork/ladder
