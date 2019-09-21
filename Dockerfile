@@ -4,7 +4,7 @@ LABEL maintainer "support@polkasource.com"
 LABEL description="Large image for building the Substrate binary."
 
 ARG PROFILE=release
-ARG REPOSITORY=paritytech-substrate
+ARG REPOSITORY=kulupu_kulupu
 WORKDIR /rustbuilder
 COPY . /rustbuilder
 
@@ -35,23 +35,23 @@ FROM phusion/baseimage:0.11
 LABEL maintainer "support@polkasource.com"
 LABEL description="Small image with the Substrate binary."
 ARG PROFILE=release
-ARG REPOSITORY=paritytech-substrate
-COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/substrate /usr/local/bin
+ARG REPOSITORY=kulupu_kulupu
+COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/kulupu /usr/local/bin
 
 # REMOVE & CLEANUP
 RUN mv /usr/share/ca* /tmp && \
 	rm -rf /usr/share/*  && \
 	mv /tmp/ca-certificates /usr/share/ && \
 	rm -rf /usr/lib/python* && \
-	mkdir -p /root/.local/share/substrate && \
-	ln -s /root/.local/share/substrate /data
+	mkdir -p /root/.local/share/kulupu && \
+	ln -s /root/.local/share/kulupu /data
 RUN	rm -rf /usr/bin /usr/sbin
 
 # FINAL PREPARATIONS
 EXPOSE 30333 9933 9944
 VOLUME ["/data"]
-#CMD ["/usr/local/bin/substrate"]
+#CMD ["/usr/local/bin/kulupu"]
 WORKDIR /usr/local/bin
-ENTRYPOINT ["substrate"]
+ENTRYPOINT ["kulupu"]
 CMD ["--chain=flaming-fir"]
 # ===== END SECOND STAGE ======
