@@ -1,3 +1,3 @@
-[submodule "paritytech-substrate"]
-	path = paritytech-substrate
-	url = https://github.com/paritytech/substrate.git
+[submodule "kulupu_kulupu"]
+	path = kulupu_kulupu
+	url = https://github.com/kulupu/kulupu
