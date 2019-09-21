@@ -37,6 +37,7 @@ LABEL description="Small image with the Substrate binary."
 ARG PROFILE=release
 ARG REPOSITORY=dothereum_dothereum
 COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/dothereum /usr/local/bin
+COPY --from=builder /rustbuilder/$REPOSITORY/res/dothereum.json /usr/local/bin
 
 # REMOVE & CLEANUP
 RUN mv /usr/share/ca* /tmp && \
@@ -53,5 +54,5 @@ VOLUME ["/data"]
 #CMD ["/usr/local/bin/dothereum"]
 WORKDIR /usr/local/bin
 ENTRYPOINT ["dothereum"]
-CMD ["--chain=flaming-fir"]
+CMD ["--chain=./dothereum.json"]
 # ===== END SECOND STAGE ======
