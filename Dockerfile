@@ -53,5 +53,5 @@ VOLUME ["/data"]
 #CMD ["/usr/local/bin/kulupu"]
 WORKDIR /usr/local/bin
 ENTRYPOINT ["kulupu"]
-CMD ["--chain=flaming-fir"]
+CMD ["--chain=kulupu"]
 # ===== END SECOND STAGE ======
