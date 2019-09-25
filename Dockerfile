@@ -37,7 +37,8 @@ LABEL description="Small image with the Substrate binary."
 ARG PROFILE=release
 ARG REPOSITORY=dothereum_dothereum
 COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/dothereum /usr/local/bin
-COPY --from=builder /rustbuilder/$REPOSITORY/res/dothereum.json /usr/local/bin
+#COPY --from=builder /rustbuilder/$REPOSITORY/res/dothereum.json /usr/local/bin
+COPY --from=builder /rustbuilder/$REPOSITORY/res/. /usr/local/bin/.
 
 # REMOVE & CLEANUP
 RUN mv /usr/share/ca* /tmp && \
