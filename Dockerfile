@@ -54,5 +54,5 @@ VOLUME ["/data"]
 #CMD ["/usr/local/bin/edgeware"]
 WORKDIR /usr/local/bin
 ENTRYPOINT ["edgeware"]
-CMD ["--chain=edgeware-testnet"]
+CMD ["--chain=chains/testnet-0.9.0.json"]
 ## ===== END SECOND STAGE ======
