@@ -37,6 +37,7 @@ LABEL description="Small image with the Substrate binary."
 ARG PROFILE=release
 ARG REPOSITORY=stakedtechnologies_plasm
 COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/plasm-node /usr/local/bin
+COPY --from=builder /rustbuilder/$REPOSITORY/testnet/. /usr/local/bin/testnet/.
 
 # REMOVE & CLEANUP
 RUN mv /usr/share/ca* /tmp && \
@@ -53,5 +54,5 @@ VOLUME ["/data"]
 #CMD ["/usr/local/bin/plasm-node"]
 WORKDIR /usr/local/bin
 ENTRYPOINT ["plasm-node"]
-CMD [""]
+CMD ["--chain=testnet/v0.0.2.json"]
 # ===== END SECOND STAGE ======
