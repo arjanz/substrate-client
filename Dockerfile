@@ -54,5 +54,5 @@ VOLUME ["/data"]
 #CMD ["/usr/local/bin/plasm-node"]
 WORKDIR /usr/local/bin
 ENTRYPOINT ["plasm-node"]
-CMD ["--chain=testnet/v0.0.2.json"]
+CMD ["--chain=testnet/v0.1.0.json"]
 # ===== END SECOND STAGE ======
