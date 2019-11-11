@@ -55,5 +55,5 @@ VOLUME ["/data"]
 #CMD ["/usr/local/bin/dothereum"]
 WORKDIR /usr/local/bin
 ENTRYPOINT ["dothereum"]
-CMD ["--chain=./alpha.json"]
+CMD ["--chain=./beta.json"]
 # ===== END SECOND STAGE ======
