@@ -36,22 +36,22 @@ LABEL maintainer "support@polkasource.com"
 LABEL description="Small image with the Substrate binary."
 ARG PROFILE=release
 ARG REPOSITORY=airalab-substrate-node-robonomics
-COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/robonomics /usr/local/bin
+COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/robonomics-node /usr/local/bin
 
 # REMOVE & CLEANUP
 RUN mv /usr/share/ca* /tmp && \
 	rm -rf /usr/share/*  && \
 	mv /tmp/ca-certificates /usr/share/ && \
 	rm -rf /usr/lib/python* && \
-	mkdir -p /root/.local/share/robonomics && \
-	ln -s /root/.local/share/robonomics /data
+	mkdir -p /root/.local/share/robonomics-node && \
+	ln -s /root/.local/share/robonomics-node /data
 RUN	rm -rf /usr/bin /usr/sbin
 
 # FINAL PREPARATIONS
 EXPOSE 30333 9933 9944
 VOLUME ["/data"]
-#CMD ["/usr/local/bin/robonomics"]
+#CMD ["/usr/local/bin/robonomics-node"]
 WORKDIR /usr/local/bin
-ENTRYPOINT ["robonomics"]
+ENTRYPOINT ["robonomics-node"]
 CMD ["--chain=robonomics"]
 # ===== END SECOND STAGE ======
