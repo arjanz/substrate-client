@@ -27,7 +27,8 @@ RUN RUSTUP_TOOLCHAIN=stable cargo install --git https://github.com/alexcrichton/
 # BUILD RUNTIME AND BINARY
 RUN rustup target add wasm32-unknown-unknown --toolchain nightly
 #RUN cd /rustbuilder/$REPOSITORY/runtime/wasm && ./build.sh
-RUN cd /rustbuilder/$REPOSITORY && RUSTUP_TOOLCHAIN=stable cargo build --$PROFILE
+#RUN cd /rustbuilder/$REPOSITORY && RUSTUP_TOOLCHAIN=stable cargo build --$PROFILE
+RUN cd /rustbuilder/$REPOSITORY && RUSTUP_TOOLCHAIN=stable cargo build --$PROFILE --bin robonomics
 # ===== END FIRST STAGE ======
 
 # ===== START SECOND STAGE ======
