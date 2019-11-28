@@ -53,5 +53,5 @@ VOLUME ["/data"]
 #CMD ["/usr/local/bin/substrate"]
 WORKDIR /usr/local/bin
 ENTRYPOINT ["substrate"]
-CMD ["--chain=flaming-fir"]
+CMD ["--dev"]
 # ===== END SECOND STAGE ======
