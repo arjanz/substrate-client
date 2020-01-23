@@ -55,5 +55,5 @@ VOLUME ["/data"]
 #CMD ["/usr/local/bin/polkadot"]
 WORKDIR /usr/local/bin
 ENTRYPOINT ["polkadot"]
-CMD [--chain=westend]
+CMD []
 # ===== END SECOND STAGE ======
