@@ -39,6 +39,7 @@ LABEL description="Small image with the Substrate binary."
 ARG PROFILE=release
 ARG REPOSITORY=paritytech-polkadot
 COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/polkadot /usr/local/bin
+COPY --from=builder /rustbuilder/$REPOSITORY/service/res /usr/local/bin/chainspec
 
 # REMOVE & CLEANUP
 RUN mv /usr/share/ca* /tmp && \
