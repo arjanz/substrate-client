@@ -4,7 +4,7 @@ LABEL maintainer "support@polkasource.com"
 LABEL description="Large image for building the Substrate binary."
 
 ARG PROFILE=release
-ARG REPOSITORY=paritytech-substrate
+ARG REPOSITORY=AcalaNetwork_Acala
 WORKDIR /rustbuilder
 COPY . /rustbuilder
 
@@ -35,23 +35,23 @@ FROM phusion/baseimage:0.11
 LABEL maintainer "support@polkasource.com"
 LABEL description="Small image with the Substrate binary."
 ARG PROFILE=release
-ARG REPOSITORY=paritytech-substrate
-COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/substrate /usr/local/bin
+ARG REPOSITORY=AcalaNetwork_Acala
+COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/acala /usr/local/bin
 
 # REMOVE & CLEANUP
 RUN mv /usr/share/ca* /tmp && \
 	rm -rf /usr/share/*  && \
 	mv /tmp/ca-certificates /usr/share/ && \
 	rm -rf /usr/lib/python* && \
-	mkdir -p /root/.local/share/substrate && \
-	ln -s /root/.local/share/substrate /data
+	mkdir -p /root/.local/share/acala && \
+	ln -s /root/.local/share/acala /data
 RUN	rm -rf /usr/bin /usr/sbin
 
 # FINAL PREPARATIONS
 EXPOSE 30333 9933 9944
 VOLUME ["/data"]
-#CMD ["/usr/local/bin/substrate"]
+#CMD ["/usr/local/bin/acala"]
 WORKDIR /usr/local/bin
-ENTRYPOINT ["substrate"]
-CMD ["--dev"]
+ENTRYPOINT ["acala"]
+CMD [""]
 # ===== END SECOND STAGE ======
