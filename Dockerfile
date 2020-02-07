@@ -53,5 +53,5 @@ VOLUME ["/data"]
 #CMD ["/usr/local/bin/acala"]
 WORKDIR /usr/local/bin
 ENTRYPOINT ["acala"]
-CMD [""]
+CMD ["--help"]
 # ===== END SECOND STAGE ======
