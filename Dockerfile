@@ -37,7 +37,7 @@ LABEL description="Small image with the Substrate binary."
 ARG PROFILE=release
 ARG REPOSITORY=hicommonwealth-edgeware-node
 COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/edgeware /usr/local/bin
-COPY --from=builder /rustbuilder/$REPOSITORY/chains/. /usr/local/bin/chains/.
+#COPY --from=builder /rustbuilder/$REPOSITORY/chains/. /usr/local/bin/chains/.
 
 # REMOVE & CLEANUP
 RUN mv /usr/share/ca* /tmp && \
@@ -54,6 +54,6 @@ VOLUME ["/data"]
 #CMD ["/usr/local/bin/edgeware"]
 WORKDIR /usr/local/bin
 ENTRYPOINT ["edgeware"]
-#CMD ["--chain=chains/testnet-0.9.9.json"]
-CMD ["--chain=edg-0.9.9"]
+#CMD ["--chain=berlin"]
+CMD ["--chain=berlin"]
 ## ===== END SECOND STAGE ======
