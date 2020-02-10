@@ -37,7 +37,7 @@ LABEL description="Small image with the Substrate binary."
 ARG PROFILE=release
 ARG REPOSITORY=hicommonwealth-edgeware-node
 COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/edgeware /usr/local/bin
-#COPY --from=builder /rustbuilder/$REPOSITORY/chains/. /usr/local/bin/chains/.
+COPY --from=builder /rustbuilder/$REPOSITORY/chains/. /usr/local/bin/chains/.
 
 # REMOVE & CLEANUP
 RUN mv /usr/share/ca* /tmp && \
