@@ -4,7 +4,7 @@ LABEL maintainer "support@polkasource.com"
 LABEL description="Large image for building the Substrate binary."
 
 ARG PROFILE=release
-ARG REPOSITORY=paritytech-substrate
+ARG REPOSITORY=centrifuge_centrifuge-chain
 WORKDIR /rustbuilder
 COPY . /rustbuilder
 
@@ -35,23 +35,24 @@ FROM phusion/baseimage:0.11
 LABEL maintainer "support@polkasource.com"
 LABEL description="Small image with the Substrate binary."
 ARG PROFILE=release
-ARG REPOSITORY=paritytech-substrate
-COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/substrate /usr/local/bin
+ARG REPOSITORY=centrifuge_centrifuge-chain
+COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/centrifuge-chain /usr/local/bin
+COPY --from=builder /rustbuilder/res/. /usr/local/res/.
 
 # REMOVE & CLEANUP
 RUN mv /usr/share/ca* /tmp && \
 	rm -rf /usr/share/*  && \
 	mv /tmp/ca-certificates /usr/share/ && \
 	rm -rf /usr/lib/python* && \
-	mkdir -p /root/.local/share/substrate && \
-	ln -s /root/.local/share/substrate /data
+	mkdir -p /root/.local/share/centrifuge-chain && \
+	ln -s /root/.local/share/centrifuge-chain /data
 RUN	rm -rf /usr/bin /usr/sbin
 
 # FINAL PREPARATIONS
 EXPOSE 30333 9933 9944
 VOLUME ["/data"]
-#CMD ["/usr/local/bin/substrate"]
+#CMD ["/usr/local/bin/centrifuge-chain"]
 WORKDIR /usr/local/bin
-ENTRYPOINT ["substrate"]
+ENTRYPOINT ["centrifuge-chain"]
 CMD ["--dev"]
 # ===== END SECOND STAGE ======
