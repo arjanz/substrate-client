@@ -37,7 +37,7 @@ LABEL description="Small image with the Substrate binary."
 ARG PROFILE=release
 ARG REPOSITORY=centrifuge_centrifuge-chain
 COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/centrifuge-chain /usr/local/bin
-COPY --from=builder /rustbuilder/res/. /usr/local/res/.
+COPY --from=builder /rustbuilder/$REPOSITORY/res/. /usr/local/res/.
 
 # REMOVE & CLEANUP
 RUN mv /usr/share/ca* /tmp && \
