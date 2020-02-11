@@ -36,7 +36,11 @@ LABEL maintainer "support@polkasource.com"
 LABEL description="Small image with the Substrate binary."
 ARG PROFILE=release
 ARG REPOSITORY=kiltprotocol-mashnet-node
-COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/substrate /usr/local/bin
+COPY --from=builder /rustbuilder/$REPOSITORY/target/$PROFILE/mashnet-node /usr/local/bin
+COPY --from=builder /rustbuilder/$REPOSITORY/start-node.sh /usr/local/bin/start-node.sh
+COPY --from=builder /rustbuilder/$REPOSITORY/chainspec.json /usr/local/bin/chainspec.json
+COPY --from=builder /rustbuilder/$REPOSITORY/chainspec.devnet.json /usr/local/bin/chainspec.devnet.json
+
 
 # REMOVE & CLEANUP
 RUN mv /usr/share/ca* /tmp && \
@@ -50,8 +54,8 @@ RUN	rm -rf /usr/bin /usr/sbin
 # FINAL PREPARATIONS
 EXPOSE 30333 9933 9944
 VOLUME ["/data"]
-#CMD ["/usr/local/bin/substrate"]
+#CMD ["/usr/local/bin/mashnet-node"]
 WORKDIR /usr/local/bin
-ENTRYPOINT ["substrate"]
+ENTRYPOINT ["mashnet-node"]
 CMD []
 # ===== END SECOND STAGE ======
