@@ -56,4 +56,5 @@ WORKDIR /usr/local/bin
 ENTRYPOINT ["edgeware"]
 #CMD ["--chain=berlin"]
 CMD ["--help"]
+
 ## ===== END SECOND STAGE ======
