@@ -1,0 +1,3 @@
+[submodule "totem-tech_totem-substrate"]
+	path = totem-tech_totem-substrate
+	url = https://gitlab.com/totem-tech/totem-substrate
