@@ -1,3 +1,0 @@
-[submodule "paritytech-substrate"]
-	path = paritytech-substrate
-	url = https://github.com/paritytech/substrate.git
